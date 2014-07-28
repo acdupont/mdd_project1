@@ -1,0 +1,20 @@
+1. Guardian class
+   - Name
+
+2. Player class
+   - Name
+   - Birth date
+   - Guardian-1 (relation to Guardian)
+   - Guardian-2 (relation to Guardian)
+
+3. Team class
+   - Players (set)
+   - Method to control which Players are valid (relation to age group)
+
+4. Teams Creator class
+   - Method that takes set of Players
+   - Creates Teams based on Age Group of Player, Player rating
+
+5. Other relations
+   - Relation of Player to Age Group
+   - Relation of Player to Rating
