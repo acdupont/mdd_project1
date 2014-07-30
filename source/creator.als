@@ -26,12 +26,7 @@ sig Team {
 }
 
 // Teams Creator class
-//   - Method that takes set of Players
-//   - Creates Teams based on Age Group of Player, Player rating
-// 
-// Other relations
-//   - Relation of Player to Age Group
-//   - Relation of Player to Rating
+//   - Method that takes set of Players and creates Teams based on their AgeRange and Rank
 
 pred test {}
 
