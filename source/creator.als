@@ -31,6 +31,13 @@ sig Team {
     // Method to control which Players are valid (relation to age group)
 }
 
+
+// Players can only be in one team
+fact {
+	all p: Player | one t : Team | p in t.players
+}
+
+
 // Teams Creator class
 //   - Method that takes set of Players and creates Teams based on their AgeRange and Rank
 
