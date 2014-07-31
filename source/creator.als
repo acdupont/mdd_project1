@@ -12,8 +12,7 @@ abstract sig Person {
 
 sig Guardian extends Person {}
 
-abstract sig Player {
-    name: one Name,
+abstract sig Player extends Person {
     birthdate: one Birthdate,
     age: one AgeRange,
     rank: one Rank,
@@ -28,18 +27,20 @@ sig Team {
 	setAge: one AgeRange,
 	targetRank: one Rank,
     players: set Player
-    // Method to control which Players are valid (relation to age group)
 }
-
 
 // Players can only be in one team
 fact {
 	all p: Player | one t : Team | p in t.players
 }
 
+fact allRanksBelongToSomeTeam {
+    all r: Rank | some t: Team | r = t.targetRank
+}
 
-// Teams Creator class
-//   - Method that takes set of Players and creates Teams based on their AgeRange and Rank
+fact allAgeRangesBelongToSomeTeam {
+    all a:AgeRange | some t:Team | a = t.setAge
+}
 
 pred test {}
 
