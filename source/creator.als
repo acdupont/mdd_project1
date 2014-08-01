@@ -33,33 +33,41 @@ sig Team {
 	femalePlayers: set FemalePlayer
 }
 
+one sig League {
+	teams: set Team
+}
+
+fact {
+	all l: League | #l.teams = 4
+}
+
 // Players can only be in one team
 fact {
     all p: Player | one t : Team | p in getPlayers[t]
 }
 
 // Returns whether or not a player is a male
-pred isMale [p: Player] {
+pred isMale (p: Player) {
     p.gender = MALE
 }
 
 // Returns whether or not a player is a female
-pred isFemale [p: Player] {
+pred isFemale (p: Player) {
     p.gender = FEMALE
 }
 
 // Function to return the set of players on the team
-fun getPlayers [t: Team] : set Player {
+fun getPlayers (t: Team) : set Player {
 	t.malePlayers + t.femalePlayers
 }
 
 // Function to count the amount of males on a team
-fun countMale [t: Team] : Int {
+fun countMale (t: Team) : Int {
     #t.malePlayers
 }
 
 // Function to count the amount  of females on a team
-fun countFemales [t: Team] : Int {
+fun countFemales (t: Team) : Int {
    #t.femalePlayers
 }
 

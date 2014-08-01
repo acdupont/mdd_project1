@@ -189,23 +189,29 @@ abstract
 \end_layout
 
 \begin_layout Itemize
-Guardian
+Guardian: represents the Player's legal guardian.
+ Extends Person.
 \end_layout
 
 \begin_layout Itemize
-Player
+Player: extends Person.
+ Adds additional fields that you'd expect a player to have, like rank and
+ age range.
 \end_layout
 
 \begin_layout Itemize
-MalePlayer
+MalePlayer: extends Player.
+ A specific atom type for males.
 \end_layout
 
 \begin_layout Itemize
-FemalePlayer
+FemalePlayer: extends Player.
+ A specific atom type for females.
 \end_layout
 
 \begin_layout Itemize
-Team
+Team: contains sets of male and female players, and the age range and rank
+ that players in the team should be.
 \end_layout
 
 \begin_layout Enumerate
