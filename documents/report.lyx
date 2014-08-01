@@ -156,11 +156,12 @@ Person: the overarching person signature.
 \emph on
 abstract
 \emph default
- because Player is a logical extension of Person.
+ because Player is logical extension of it.
 \end_layout
 
 \begin_layout Itemize
 Player: extends Person.
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -190,7 +191,7 @@ Person: mapped to Gender.
 \end_layout
 
 \begin_layout Itemize
-Team: mapped to a set of MalePlayer and a set of FemalePlayer.
+Team: mapped to a set of MalePlayer, and a set of FemalePlayer.
 \end_layout
 
 \begin_layout Itemize
@@ -201,11 +202,6 @@ League: mapped to a set of Team.
 Multiplicities
 \end_layout
 
-<<<<<<< Updated upstream
-\begin_layout Subsubsection
-Multiplicities
-\end_layout
-
 \begin_layout Standard
 We have primarily used 
 \emph on
@@ -265,67 +261,6 @@ The final version is not as pretty, but is logically easier to follow and
 Scope-Based Model Checking
 \end_layout
 
-=======
-\begin_layout Standard
-We have primarily used 
-\emph on
-one 
-\emph default
-in our relations because it only makes sense for those fields to be mapped
- to one object.
- For example, the gender field.
-\end_layout
-
-\begin_layout Subsubsection
-Visualization
-\end_layout
-
-\begin_layout Standard
-The first design was fairly simple, but did not have very much in the way
- of controlling logic.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename /Users/clayton/Desktop/Screen Shot 2014-07-31 at 10.31.10 PM.png
-	width 50page%
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-The second diagram shows the much-improved second version.
- There were still some issues with logic, but the resut is at the least
- much prettier.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename /Users/clayton/Desktop/Screen Shot 2014-07-31 at 10.32.11 PM.png
-	width 50page%
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-The final version is not as pretty, but is logically easier to follow and
- has cut out much of the redundant information that really wasn't needed
- in the model.
-\end_layout
-
-\begin_layout Subsection
-Scope-Based Model Checking
-\end_layout
-
->>>>>>> Stashed changes
 \begin_layout Subsubsection
 Facts
 \end_layout
@@ -435,7 +370,7 @@ Scope Check
 \end_layout
 
 \begin_layout Standard
-Larger scopes like 32 and 40 work because there are 4 teams and need at
+Larger scopes like 32 and 40 work because there are 4 teams and need at
  least 4 boys and girls on each team.
  Scopes smaller than this do not because there are not enough kids to satisfy
  the requirements.
