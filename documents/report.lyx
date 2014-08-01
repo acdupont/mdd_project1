@@ -144,30 +144,6 @@ The following signatures are defined in our model:
 \end_layout
 
 \begin_layout Itemize
-Name: represents the name of a Person.
-\end_layout
-
-\begin_layout Itemize
-Birthdate: the birth date of a Player.
-\end_layout
-
-\begin_layout Itemize
-AgeRange: each Player is mapped to an age range.
- Teams must be made up of Players within the same range.
- Declared with 
-\emph on
-enum.
-\end_layout
-
-\begin_layout Itemize
-Rank: the skill of a Player.
- Teams are made up of Players of the same rank.
- Declared with 
-\emph on
-enum.
-\end_layout
-
-\begin_layout Itemize
 Gender: each Person has a gender (MALE or FEMALE).
  Declared with 
 \emph on
@@ -180,19 +156,11 @@ Person: the overarching person signature.
 \emph on
 abstract
 \emph default
- because both the Player and Guardian signatures need Name and Gender fields.
- And they are logical extensions of Person.
-\end_layout
-
-\begin_layout Itemize
-Guardian: represents the Player's legal guardian.
- Extends Person.
+ because Player is a logical extension of Person.
 \end_layout
 
 \begin_layout Itemize
 Player: extends Person.
- Adds additional fields that you'd expect a player to have, like rank and
- age range.
 \end_layout
 
 \begin_layout Itemize
@@ -206,8 +174,7 @@ FemalePlayer: extends Player.
 \end_layout
 
 \begin_layout Itemize
-Team: contains sets of male and female players, and the age range and rank
- that players in the team should be.
+Team: contains sets of male and female players.
 \end_layout
 
 \begin_layout Itemize
@@ -219,21 +186,22 @@ Relations between Signatures
 \end_layout
 
 \begin_layout Itemize
-Person: mapped to Name and Gender.
+Person: mapped to Gender.
 \end_layout
 
 \begin_layout Itemize
-Player: mapped to Birthdate, AgeRange, Rank, and a set of Guardian.
-\end_layout
-
-\begin_layout Itemize
-Team: mapped to AgeRange, Rank, a set of MalePlayer, and a set of FemalePlayer.
+Team: mapped to a set of MalePlayer and a set of FemalePlayer.
 \end_layout
 
 \begin_layout Itemize
 League: mapped to a set of Team.
 \end_layout
 
+\begin_layout Subsubsection
+Multiplicities
+\end_layout
+
+<<<<<<< Updated upstream
 \begin_layout Subsubsection
 Multiplicities
 \end_layout
@@ -297,6 +265,67 @@ The final version is not as pretty, but is logically easier to follow and
 Scope-Based Model Checking
 \end_layout
 
+=======
+\begin_layout Standard
+We have primarily used 
+\emph on
+one 
+\emph default
+in our relations because it only makes sense for those fields to be mapped
+ to one object.
+ For example, the gender field.
+\end_layout
+
+\begin_layout Subsubsection
+Visualization
+\end_layout
+
+\begin_layout Standard
+The first design was fairly simple, but did not have very much in the way
+ of controlling logic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /Users/clayton/Desktop/Screen Shot 2014-07-31 at 10.31.10 PM.png
+	width 50page%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The second diagram shows the much-improved second version.
+ There were still some issues with logic, but the resut is at the least
+ much prettier.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /Users/clayton/Desktop/Screen Shot 2014-07-31 at 10.32.11 PM.png
+	width 50page%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The final version is not as pretty, but is logically easier to follow and
+ has cut out much of the redundant information that really wasn't needed
+ in the model.
+\end_layout
+
+\begin_layout Subsection
+Scope-Based Model Checking
+\end_layout
+
+>>>>>>> Stashed changes
 \begin_layout Subsubsection
 Facts
 \end_layout
