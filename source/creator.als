@@ -1,34 +1,18 @@
 module creator
 
-sig Name, Birthdate {}
-
-// We want a specific number of ages and ranks
-enum AgeRange { A0, A1, A2, A3, A4 }
-enum Rank { R0, R1, R2, R3, R4 } 
-
 enum Gender { MALE, FEMALE }
 
 abstract sig Person {
-    name: one Name,
     gender: one Gender
 }
 
-sig Guardian extends Person {}
-
-abstract sig Player extends Person {
-    birthdate: one Birthdate,
-    age: one AgeRange,
-    rank: one Rank,
-    guardians: set Guardian
-}
+abstract sig Player extends Person {}
 
 sig MalePlayer extends Player {}
 sig FemalePlayer extends Player {}
 
 // Basic team setup
 sig Team {
-    setAge: one AgeRange,
-    targetRank: one Rank,
     malePlayers: set MalePlayer,
 	femalePlayers: set FemalePlayer
 }
@@ -37,8 +21,14 @@ one sig League {
 	teams: set Team
 }
 
+// Four teams are in the league
 fact {
 	one l: League | #l.teams = 4
+}
+
+// All teams are in the league
+fact {
+	all t: Team | one l: League | t in l.teams
 }
 
 // Players can only be in one team
@@ -46,14 +36,20 @@ fact {
     all p: Player | one t : Team | p in getPlayers[t]
 }
 
-// All AgeRanges belong to some team
 fact {
-	all a: AgeRange | some t: Team | a = t.setAge
+	all t: Team | #t.malePlayers = 2
 }
 
-// All Ranks belong to some team
 fact {
-	all r: Rank | some t: Team | r = t.targetRank
+	all t: Team | #t.femalePlayers = 2
+}
+
+fact {
+	all m: MalePlayer | m.gender = MALE
+}
+
+fact {
+	all f: FemalePlayer | f.gender = FEMALE
 }
 
 // Returns whether or not a player is a male
@@ -83,4 +79,4 @@ fun countFemales (t: Team) : Int {
 
 pred test {}
 
-run test
+run test for 20
