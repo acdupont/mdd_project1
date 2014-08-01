@@ -214,34 +214,14 @@ Team: contains sets of male and female players, and the age range and rank
  that players in the team should be.
 \end_layout
 
-\begin_layout Enumerate
-Identify abstractions you want to have in your Alloy model and declare them
- as signatures, denoted with the 
-\series bold
-sig
-\series default
- keyword.
- (
-\emph on
-15 points
-\emph default
-)
+\begin_layout Subsubsection
+Relations between Signatures
 \end_layout
 
-\begin_deeper
-\begin_layout Enumerate
-Determine which signatures should be declared as 
-\series bold
-abstract sig
-\series default
-, and explain why (
-\emph on
-10 points
-\emph default
-)
+\begin_layout Itemize
+Person: 
 \end_layout
 
-\end_deeper
 \begin_layout Enumerate
 Specify the 
 \series bold
