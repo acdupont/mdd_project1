@@ -38,12 +38,22 @@ one sig League {
 }
 
 fact {
-	all l: League | #l.teams = 4
+	one l: League | #l.teams = 4
 }
 
 // Players can only be in one team
 fact {
     all p: Player | one t : Team | p in getPlayers[t]
+}
+
+// All AgeRanges belong to some team
+fact {
+	all a: AgeRange | some t: Team | a = t.setAge
+}
+
+// All Ranks belong to some team
+fact {
+	all r: Rank | some t: Team | r = t.targetRank
 }
 
 // Returns whether or not a player is a male
