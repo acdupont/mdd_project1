@@ -214,28 +214,12 @@ Team: contains sets of male and female players, and the age range and rank
  that players in the team should be.
 \end_layout
 
-\begin_layout Itemize
-League: a grouping of teams.
-\end_layout
-
 \begin_layout Subsubsection
 Relations between Signatures
 \end_layout
 
 \begin_layout Itemize
-Person: mapped to Name and Gender.
-\end_layout
-
-\begin_layout Itemize
-Player: mapped to Birthdate, AgeRange, Rank, and a set of Guardian.
-\end_layout
-
-\begin_layout Itemize
-Team: mapped to AgeRange, Rank, a set of MalePlayer, and a set of FemalePlayer.
-\end_layout
-
-\begin_layout Itemize
-League: mapped to a set of Team.
+Person: 
 \end_layout
 
 \begin_layout Enumerate
