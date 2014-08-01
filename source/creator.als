@@ -32,12 +32,12 @@ fact {
 
 // Each team has 4 males
 fact {
-	all t: Team | #t.malePlayers = 4
+	all t: Team | #t.malePlayers = 2
 }
 
 // Each team has 4 females
 fact {
-	all t: Team | #t.femalePlayers = 4
+	all t: Team | #t.femalePlayers = 2
 }
 
 // All MalePlayers are males
@@ -51,14 +51,18 @@ fact {
 }
 
 // No team isn't in the league
-assert {
+assert TeamInLeague{
 	all t: Team | one l: League | t in l.teams
 }
 
+check TeamInLeague
+
 // Every team has the same amount of males as there are females
-assert {
+assert MaleAndFemaleEqual {
 	all t: Team | countMales [t] = countFemales [t]
 }
+
+check MaleAndFemaleEqual
 
 // Returns whether or not a player is a male
 pred isMale (p: Player) {
@@ -88,3 +92,4 @@ fun countFemales (t: Team) : Int {
 pred test {}
 
 run test for 40
+
