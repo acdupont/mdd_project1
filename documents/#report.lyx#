@@ -214,65 +214,211 @@ Team: contains sets of male and female players, and the age range and rank
  that players in the team should be.
 \end_layout
 
+\begin_layout Itemize
+League: a grouping of teams.
+\end_layout
+
 \begin_layout Subsubsection
 Relations between Signatures
 \end_layout
 
 \begin_layout Itemize
-Person: 
+Person: mapped to Name and Gender.
 \end_layout
 
-\begin_layout Enumerate
-Specify the 
-\series bold
-relations 
-\series default
-between the signatures (i.e., abstractions) you have defined.
- (
+\begin_layout Itemize
+Player: mapped to Birthdate, AgeRange, Rank, and a set of Guardian.
+\end_layout
+
+\begin_layout Itemize
+Team: mapped to AgeRange, Rank, a set of MalePlayer, and a set of FemalePlayer.
+\end_layout
+
+\begin_layout Itemize
+League: mapped to a set of Team.
+\end_layout
+
+\begin_layout Subsubsection
+Multiplicities
+\end_layout
+
+\begin_layout Standard
+We have primarily used 
 \emph on
-20 points
+one 
 \emph default
-)
+in our relations because it only makes sense for those fields to be mapped
+ to one object.
+ For example, the gender field.
 \end_layout
 
-\begin_layout Enumerate
-Use set multiplicities to define the 
-\series bold
-multiplicity
-\series default
- of each signature participating in a relation (
-\emph on
-15 points
-\emph default
-)
+\begin_layout Subsubsection
+Visualization
 \end_layout
 
-\begin_layout Enumerate
-In each step of your model creation, visualize your model with Alloy to
- see if you have created what you want (
-\emph on
-25 points
-\emph default
-)
+\begin_layout Standard
+The first design was fairly simple, but did not have very much in the way
+ of controlling logic.
 \end_layout
 
-\begin_deeper
-\begin_layout Enumerate
-Try to check your expectations using 
-\series bold
-assertions
-\series default
-.
- If assertions fail, then visualize your counterexamples in a small scope.
+\begin_layout Standard
+\begin_inset Graphics
+	filename /Users/clayton/Desktop/Screen Shot 2014-07-31 at 10.31.10 PM.png
+	width 50page%
+
+\end_inset
+
+
 \end_layout
 
-\end_deeper
+\begin_layout Standard
+
+\begin_inset Newline newline
+\end_inset
+
+The second diagram shows the much-improved second version.
+ There were still some issues with logic, but the resut is at the least
+ much prettier.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /Users/clayton/Desktop/Screen Shot 2014-07-31 at 10.32.11 PM.png
+	width 50page%
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The final version is not as pretty, but is logically easier to follow and
+ has cut out much of the redundant information that really wasn't needed
+ in the model.
+\end_layout
+
 \begin_layout Subsection
 Scope-Based Model Checking (SubSection)
 \end_layout
 
+\begin_layout Subsubsection
+Facts
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+fact { all p: Player | one t : Team | p in getPlayers[t] } 
+\emph default
+= Players can only be part of one team.
+ It is not an assertion because it must always be true; we do not want to
+ check if it is true or false, because the way our model operates it is
+ assumed to be always true.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+fact { all m: MalePlayer | isMale [m] }
+\emph default
+ = Male players are defined as male.
+ This is not an assertion because this should always be true.
+ Examples/counterexamples should not test this fact.
+\end_layout
+
+\begin_layout Subsubsection
+Assertions
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+assert { all t: Team | one l: League | t in l.teams }
+\emph default
+ = All teams are in a league.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+assert { all t: Team | countMales [t] = countFemales [t] }
+\emph default
+ = Every team has an equal number of males and females.
+\end_layout
+
+\begin_layout Subsubsection
+Functions
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+fun countMales (t: Team) : Int
+\emph default
+ = Returns the number of male players on the given team.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+fun countFemales (t: Team) : Int
+\emph default
+ = Returns the number of female players on the given team.
+\end_layout
+
+\begin_layout Subsubsection
+Predicates
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+pred isMale (p: Player)
+\emph default
+ = Returns true if the given player is male.
+ Used in the 
+\begin_inset Quotes eld
+\end_inset
+
+all male players are male
+\begin_inset Quotes erd
+\end_inset
+
+ fact.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+pred isFemale (p: Player)
+\emph default
+ = Returns true if the given player is female.
+ Used in the 
+\begin_inset Quotes eld
+\end_inset
+
+all female players are female
+\begin_inset Quotes erd
+\end_inset
+
+ fact.
+\end_layout
+
+\begin_layout Subsubsection
+Scope Check
+\end_layout
+
 \begin_layout Standard
-In this part of your project, you have to do the following steps:
+
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -339,13 +485,5 @@ If so, please figure out why that happens
 
 \end_deeper
 \end_deeper
-\begin_layout Enumerate
-You should document all the above steps in a written report (
-\emph on
-20 points
-\emph default
-)
-\end_layout
-
 \end_body
 \end_document
