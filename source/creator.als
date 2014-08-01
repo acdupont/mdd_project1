@@ -11,7 +11,6 @@ abstract sig Player extends Person {}
 sig MalePlayer extends Player {}
 sig FemalePlayer extends Player {}
 
-// Basic team setup
 sig Team {
     malePlayers: set MalePlayer,
 	femalePlayers: set FemalePlayer
@@ -26,30 +25,39 @@ fact {
 	one l: League | #l.teams = 4
 }
 
-// All teams are in the league
-fact {
-	all t: Team | one l: League | t in l.teams
-}
-
 // Players can only be in one team
 fact {
     all p: Player | one t : Team | p in getPlayers[t]
 }
 
+// Each team has 4 males
 fact {
-	all t: Team | #t.malePlayers = 2
+	all t: Team | #t.malePlayers = 4
 }
 
+// Each team has 4 females
 fact {
-	all t: Team | #t.femalePlayers = 2
+	all t: Team | #t.femalePlayers = 4
 }
 
+// All MalePlayers are males
 fact {
-	all m: MalePlayer | m.gender = MALE
+	all m: MalePlayer | isMale [m]
 }
 
+// All FemalePlayers are females
 fact {
-	all f: FemalePlayer | f.gender = FEMALE
+	all f: FemalePlayer | isFemale [f]
+}
+
+// No team isn't in the league
+assert {
+	all t: Team | one l: League | t in l.teams
+}
+
+// Every team has the same amount of males as there are females
+assert {
+	all t: Team | countMales [t] = countFemales [t]
 }
 
 // Returns whether or not a player is a male
@@ -68,7 +76,7 @@ fun getPlayers (t: Team) : set Player {
 }
 
 // Function to count the amount of males on a team
-fun countMale (t: Team) : Int {
+fun countMales (t: Team) : Int {
     #t.malePlayers
 }
 
@@ -79,4 +87,4 @@ fun countFemales (t: Team) : Int {
 
 pred test {}
 
-run test for 20
+run test for 40
